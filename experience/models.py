@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.postgres.fields import ArrayField
 
+
 class Experience(models.Model):
     role = models.CharField(max_length=100)
     company = models.CharField(max_length=100)
