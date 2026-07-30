@@ -1,5 +1,10 @@
 import { apiFetch } from "@/lib/api/client";
 
+export interface Hobby {
+  label: string;
+  icon_key: string;
+}
+
 export interface UserProfile {
   id: number;
   name: string;
@@ -8,7 +13,9 @@ export interface UserProfile {
   email: string;
   github_url: string;
   linkedin_url: string;
+  leetcode_url: string;
   location: string;
+  hobbies: Hobby[];
 }
 
 export async function getProfile(): Promise<UserProfile> {
