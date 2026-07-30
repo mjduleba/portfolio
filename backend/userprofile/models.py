@@ -8,6 +8,7 @@ class UserProfile(models.Model):
     email = models.EmailField()
     github_url = models.URLField()
     linkedin_url = models.URLField()
+    leetcode_url = models.URLField(blank=True, default="")
     location = models.CharField(max_length=200)
 
     def __str__(self):

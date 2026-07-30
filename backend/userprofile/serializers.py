@@ -13,4 +13,15 @@ class ProfileSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = UserProfile
-        fields = ["id", "name", "title", "bio", "email", "github_url", "linkedin_url", "location", "hobbies"]
+        fields = [
+            "id",
+            "name",
+            "title",
+            "bio",
+            "email",
+            "github_url",
+            "linkedin_url",
+            "leetcode_url",
+            "location",
+            "hobbies",
+        ]
