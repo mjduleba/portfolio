@@ -13,6 +13,7 @@ export interface UserProfile {
   email: string;
   github_url: string;
   linkedin_url: string;
+  leetcode_url: string;
   location: string;
   hobbies: Hobby[];
 }
