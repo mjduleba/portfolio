@@ -15,19 +15,13 @@ interface ProfileLink {
 }
 
 function getProfileLinks(profile: UserProfile): ProfileLink[] {
-  const links: ProfileLink[] = [
+  return [
     { label: "LinkedIn", href: profile.linkedin_url, iconKey: "linkedin", external: true },
     { label: "GitHub", href: profile.github_url, iconKey: "github", external: true },
+    { label: "LeetCode", href: profile.leetcode_url, iconKey: "leetcode", external: true },
     { label: "Gmail", href: `mailto:${profile.email}`, iconKey: "gmail" },
+    { label: "Resume", href: "/resume.pdf", iconKey: "resume", download: true },
   ];
-
-  if (profile.leetcode_url) {
-    links.push({ label: "LeetCode", href: profile.leetcode_url, iconKey: "leetcode", external: true });
-  }
-
-  links.push({ label: "Download Resume", href: "/resume.pdf", iconKey: "resume", download: true });
-
-  return links;
 }
 
 export default function ContactCard({ profile }: ContactCardProps) {
