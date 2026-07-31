@@ -12,6 +12,7 @@ export interface Skill {
   name: string;
   category: SkillCategory;
   order: number;
+  icon_key: string;
 }
 
 export async function getSkills(): Promise<Skill[]> {
