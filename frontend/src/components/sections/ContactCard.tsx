@@ -58,6 +58,38 @@ export default function ContactCard({ profile }: ContactCardProps) {
           </a>
         ))}
       </div>
+
+      {profile.education.length > 0 && (
+        <>
+          <div className="w-full border-t border-black/[.08] dark:border-white/[.145]" />
+          <div className="flex w-full flex-col gap-2">
+            {profile.education.map((edu, index) => (
+              <div key={index} className="flex flex-col gap-2">
+                <div className="font-mono flex items-center justify-start gap-3 rounded-full border border-black/[.08] px-5 py-2.5 text-base font-medium text-foreground/80 dark:border-white/[.145]">
+                  <img
+                    src={`/icons/${edu.institution_icon_key}.png`}
+                    alt=""
+                    width={24}
+                    height={24}
+                    className="h-6 w-6"
+                  />
+                  {edu.institution}
+                </div>
+                <div className="font-mono flex items-center justify-start gap-3 rounded-full border border-black/[.08] px-5 py-2.5 text-base font-medium text-foreground/80 dark:border-white/[.145]">
+                  <img
+                    src={`/icons/${edu.degree_icon_key}.png`}
+                    alt=""
+                    width={24}
+                    height={24}
+                    className="h-6 w-6"
+                  />
+                  {edu.degree}
+                </div>
+              </div>
+            ))}
+          </div>
+        </>
+      )}
     </Card>
   );
 }
