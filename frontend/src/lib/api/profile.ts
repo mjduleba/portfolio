@@ -37,5 +37,9 @@ export async function getProfile(): Promise<UserProfile> {
     );
   }
 
-  return data[0];
+  const profile = data[0];
+
+  // Defensive default: guards against stale cached API responses predating
+  // this field (Next.js fetch cache can serve an old shape past its revalidate window).
+  return { ...profile, education: profile.education ?? [] };
 }
