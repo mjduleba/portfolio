@@ -5,6 +5,13 @@ export interface Hobby {
   icon_key: string;
 }
 
+export interface Education {
+  institution: string;
+  institution_icon_key: string;
+  degree: string;
+  degree_icon_key: string;
+}
+
 export interface UserProfile {
   id: number;
   name: string;
@@ -16,6 +23,7 @@ export interface UserProfile {
   leetcode_url: string;
   location: string;
   hobbies: Hobby[];
+  education: Education[];
 }
 
 export async function getProfile(): Promise<UserProfile> {
@@ -29,5 +37,9 @@ export async function getProfile(): Promise<UserProfile> {
     );
   }
 
-  return data[0];
+  const profile = data[0];
+
+  // Defensive default: guards against stale cached API responses predating
+  // this field (Next.js fetch cache can serve an old shape past its revalidate window).
+  return { ...profile, education: profile.education ?? [] };
 }
