@@ -26,3 +26,18 @@ class Hobby(models.Model):
 
     def __str__(self):
         return self.label
+
+
+class Education(models.Model):
+    profile = models.ForeignKey(UserProfile, related_name="education", on_delete=models.CASCADE)
+    institution = models.CharField(max_length=200)
+    institution_icon_key = models.SlugField(max_length=50, blank=True, default="")
+    degree = models.CharField(max_length=200)
+    degree_icon_key = models.SlugField(max_length=50, blank=True, default="")
+    order = models.PositiveSmallIntegerField(default=0)
+
+    class Meta:
+        ordering = ["order", "id"]
+
+    def __str__(self):
+        return f"{self.degree} — {self.institution}"

@@ -1,13 +1,13 @@
 from django.core.management.base import BaseCommand
 
-from userprofile.models import UserProfile
+from userprofile.models import Education, UserProfile
 
 
 class Command(BaseCommand):
     help = 'Seed the UserProfile model with initial data'
 
     def handle(self, *args, **options):
-        UserProfile.objects.get_or_create(
+        profile, _ = UserProfile.objects.get_or_create(
             email='michael.duleba1@gmail.com',
             defaults={
                 'name': 'Michael Duleba',
@@ -22,4 +22,16 @@ class Command(BaseCommand):
                 'location': 'Cleveland, Ohio',
             }
         )
+
+        Education.objects.get_or_create(
+            profile=profile,
+            institution='Cleveland State University',
+            degree='B.S. in Computer Science',
+            defaults={
+                'institution_icon_key': 'cleveland-state',
+                'degree_icon_key': 'graduation-cap',
+                'order': 0,
+            }
+        )
+
         self.stdout.write(self.style.SUCCESS('UserProfile seeded.'))

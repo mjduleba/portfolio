@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Hobby, UserProfile
+from .models import Education, Hobby, UserProfile
 
 
 class HobbyInline(admin.TabularInline):
@@ -7,8 +7,13 @@ class HobbyInline(admin.TabularInline):
     extra = 1
 
 
+class EducationInline(admin.TabularInline):
+    model = Education
+    extra = 1
+
+
 class UserProfileAdmin(admin.ModelAdmin):
-    inlines = [HobbyInline]
+    inlines = [HobbyInline, EducationInline]
 
 
 # Register UserProfile model in the admin site

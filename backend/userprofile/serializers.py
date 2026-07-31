@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Hobby, UserProfile
+from .models import Education, Hobby, UserProfile
 
 
 class HobbySerializer(serializers.ModelSerializer):
@@ -8,8 +8,15 @@ class HobbySerializer(serializers.ModelSerializer):
         fields = ["label", "icon_key"]
 
 
+class EducationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Education
+        fields = ["institution", "institution_icon_key", "degree", "degree_icon_key"]
+
+
 class ProfileSerializer(serializers.ModelSerializer):
     hobbies = HobbySerializer(many=True, read_only=True)
+    education = EducationSerializer(many=True, read_only=True)
 
     class Meta:
         model = UserProfile
@@ -24,4 +31,5 @@ class ProfileSerializer(serializers.ModelSerializer):
             "leetcode_url",
             "location",
             "hobbies",
+            "education",
         ]
