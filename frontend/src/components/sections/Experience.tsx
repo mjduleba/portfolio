@@ -47,16 +47,25 @@ export default function Experience({ experience, skills }: ExperienceProps) {
         <div className="mt-6 flex flex-col gap-6">
           {experience.map((job) => (
             <Card key={job.id} className="p-10 sm:p-12">
-              <div className="flex flex-wrap items-baseline justify-between gap-3">
-                <div>
-                  <h3 className="font-title text-xl font-semibold text-foreground">{job.role}</h3>
-                  <p className="font-mono text-base text-foreground/70">{job.company}</p>
-                </div>
-                <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap items-start justify-between gap-3">
+                <div className="flex flex-col items-start gap-2">
+                  <h3 className="font-title text-2xl font-semibold text-foreground">{job.role}</h3>
                   <Tag
-                    color="blue"
+                    color="green"
                     text={`${formatDate(job.start_date)} – ${job.end_date ? formatDate(job.end_date) : "Present"}`}
                   />
+                </div>
+                <div className="flex flex-col items-end gap-2">
+                  <div className="flex items-center gap-3">
+                    <img
+                      src={`/icons/${job.company_icon_key}.jpeg`}
+                      alt=""
+                      width={32}
+                      height={32}
+                      className="h-8 w-8 shrink-0 rounded-full object-contain"
+                    />
+                    <p className="font-mono text-lg text-foreground/70">{job.company}</p>
+                  </div>
                   <Tag color="green" text={job.location} />
                 </div>
               </div>
