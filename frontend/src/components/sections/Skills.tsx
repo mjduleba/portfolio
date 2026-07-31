@@ -1,7 +1,7 @@
 import type { Skill, SkillCategory } from "@/lib/api/skills";
-import type { TagColor } from "@/components/ui/Tag";
 import Card from "@/components/ui/Card";
 import Tag from "@/components/ui/Tag";
+import { CATEGORY_COLORS } from "@/lib/skillColors";
 
 interface SkillsProps {
   skills: Skill[];
@@ -13,13 +13,6 @@ const CATEGORY_ORDER: SkillCategory[] = [
   "Cloud & Infrastructure",
   "Technical Concepts",
 ];
-
-const CATEGORY_COLORS: Record<SkillCategory, TagColor> = {
-  "Languages & Querying": "blue",
-  "Frameworks, Libraries & Tools": "purple",
-  "Cloud & Infrastructure": "orange",
-  "Technical Concepts": "red",
-};
 
 export default function Skills({ skills }: SkillsProps) {
   const categories = CATEGORY_ORDER.map((category) => ({

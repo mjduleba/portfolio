@@ -36,7 +36,7 @@ class Command(BaseCommand):
             {'name': 'GitHub', 'category': Skill.Category.CLOUD, 'order': 5, 'icon_key': 'github'},
 
             # Technical Concepts
-            {'name': 'API Integration', 'category': Skill.Category.CONCEPTS, 'order': 1, 'icon_key': ''},
+            {'name': 'API Integrations', 'category': Skill.Category.CONCEPTS, 'order': 1, 'icon_key': ''},
             {'name': 'ETL Pipelines', 'category': Skill.Category.CONCEPTS, 'order': 2, 'icon_key': ''},
             {'name': 'Data Validation', 'category': Skill.Category.CONCEPTS, 'order': 3, 'icon_key': ''},
             {'name': 'Workflow Automation', 'category': Skill.Category.CONCEPTS, 'order': 4, 'icon_key': ''},
