@@ -40,14 +40,17 @@ export default function ContactCard({ profile }: ContactCardProps) {
 
       <div>
         <h3 className="font-title text-xl font-semibold text-foreground">{profile.name}</h3>
+        <div className="mt-4 flex flex-wrap gap-2">
+            <Tag color="blue" text={profile.title} />
+          </div>
         <div className="mt-2 flex justify-center">
           <Tag color="green" text={profile.location} />
         </div>
       </div>
 
-      <div className="w-full">
+      <div className="py-2 w-full">
         <SectionHeading title="Links" />
-        <div className="mt-3 flex w-full flex-col gap-2">
+        <div className="mt-3 py-2 flex w-full flex-col gap-2">
           {links.map((link) => (
             <a
               key={link.iconKey}

@@ -26,10 +26,6 @@ export default function About({ profile }: AboutProps) {
             About
           </h2>
 
-          <div className="mt-4 flex flex-wrap gap-2">
-            <Tag color="blue" text={profile.title} />
-          </div>
-
           <div className="my-6 border-t border-black/[.08] dark:border-white/[.145]" />
 
           <div className="space-y-4">
