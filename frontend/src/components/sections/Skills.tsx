@@ -30,7 +30,7 @@ export default function Skills({ skills }: SkillsProps) {
   })).filter((group) => group.skills.length > 0);
 
   return (
-    <section id="skills" className="scroll-mt-24 px-8 py-16 sm:px-12">
+    <section id="skills" className="px-8 py-16 sm:px-12">
       <Card className="mx-auto max-w-6xl p-10 sm:p-12">
         <h2 className="font-title text-3xl font-semibold tracking-tight text-foreground">Skills</h2>
         <div className="mt-6 space-y-6">
