@@ -11,6 +11,7 @@ class Skill(models.Model):
     name = models.CharField(max_length=100)
     category = models.CharField(max_length=100, choices=Category.choices)
     order = models.IntegerField(default=0)
+    icon_key = models.SlugField(max_length=50, blank=True, default="")
 
     class Meta:
         ordering = ['category', 'order']
