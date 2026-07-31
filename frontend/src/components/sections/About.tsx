@@ -16,7 +16,7 @@ export default function About({ profile }: AboutProps) {
 
   return (
     <section id="about" className="scroll-mt-24 px-8 py-24 sm:px-12">
-      <div className="mx-auto flex max-w-4xl flex-col gap-6 sm:flex-row sm:items-start">
+      <div className="mx-auto flex max-w-4xl flex-col gap-6 sm:flex-row sm:items-stretch">
         <ContactCard profile={profile} />
 
         <Card className="p-8 sm:flex-1 sm:p-10">
