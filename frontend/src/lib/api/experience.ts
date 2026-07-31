@@ -1,5 +1,10 @@
 import { apiFetch } from "@/lib/api/client";
 
+export interface ExperienceBullet {
+  text: string;
+  tags: string[];
+}
+
 export interface Experience {
   id: number;
   role: string;
@@ -7,7 +12,7 @@ export interface Experience {
   location: string;
   start_date: string;
   end_date: string | null;
-  bullets: string[];
+  bullets: ExperienceBullet[];
 }
 
 export async function getExperience(): Promise<Experience[]> {
