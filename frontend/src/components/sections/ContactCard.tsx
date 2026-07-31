@@ -1,6 +1,7 @@
 import type { UserProfile } from "@/lib/api/profile";
 import Card from "@/components/ui/Card";
 import Tag from "@/components/ui/Tag";
+import SectionHeading from "@/components/ui/SectionHeading";
 
 interface ContactCardProps {
   profile: UserProfile;
@@ -28,7 +29,7 @@ export default function ContactCard({ profile }: ContactCardProps) {
   const links = getProfileLinks(profile);
 
   return (
-    <Card className="flex flex-col items-center gap-4 p-8 text-center sm:w-72">
+    <Card className="flex flex-col items-center gap-4 p-10 text-center sm:w-[24rem] sm:p-12">
       <img
         src="/profile.png"
         alt={profile.name}
@@ -44,52 +45,23 @@ export default function ContactCard({ profile }: ContactCardProps) {
         </div>
       </div>
 
-      <div className="mt-2 flex w-full flex-col gap-2">
-        {links.map((link) => (
-          <a
-            key={link.iconKey}
-            href={link.href}
-            {...(link.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-            {...(link.download ? { download: true } : {})}
-            className="font-mono flex items-center justify-start gap-3 rounded-full border border-black/[.08] px-5 py-2.5 text-base font-medium text-foreground/80 transition-colors hover:bg-foreground/10 dark:border-white/[.145]"
-          >
-            <img src={`/icons/${link.iconKey}.png`} alt="" width={24} height={24} className="h-6 w-6" />
-            {link.label}
-          </a>
-        ))}
+      <div className="w-full">
+        <SectionHeading title="Links" />
+        <div className="mt-3 flex w-full flex-col gap-2">
+          {links.map((link) => (
+            <a
+              key={link.iconKey}
+              href={link.href}
+              {...(link.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+              {...(link.download ? { download: true } : {})}
+              className="font-mono flex items-center justify-start gap-3 rounded-full border border-black/[.08] px-5 py-2.5 text-base font-medium text-foreground/80 transition-colors hover:bg-foreground/10 dark:border-white/[.145]"
+            >
+              <img src={`/icons/${link.iconKey}.png`} alt="" width={24} height={24} className="h-6 w-6" />
+              {link.label}
+            </a>
+          ))}
+        </div>
       </div>
-
-      {profile.education.length > 0 && (
-        <>
-          <div className="w-full border-t border-black/[.08] dark:border-white/[.145]" />
-          <div className="flex w-full flex-col gap-2">
-            {profile.education.map((edu, index) => (
-              <div key={index} className="flex flex-col gap-2">
-                <div className="font-mono flex items-center justify-start gap-3 rounded-full border border-black/[.08] px-5 py-2.5 text-base font-medium text-foreground/80 dark:border-white/[.145]">
-                  <img
-                    src={`/icons/${edu.institution_icon_key}.png`}
-                    alt=""
-                    width={24}
-                    height={24}
-                    className="h-6 w-6"
-                  />
-                  {edu.institution}
-                </div>
-                <div className="font-mono flex items-center justify-start gap-3 rounded-full border border-black/[.08] px-5 py-2.5 text-base font-medium text-foreground/80 dark:border-white/[.145]">
-                  <img
-                    src={`/icons/${edu.degree_icon_key}.png`}
-                    alt=""
-                    width={24}
-                    height={24}
-                    className="h-6 w-6"
-                  />
-                  {edu.degree}
-                </div>
-              </div>
-            ))}
-          </div>
-        </>
-      )}
     </Card>
   );
 }

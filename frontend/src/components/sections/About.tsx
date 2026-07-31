@@ -2,6 +2,8 @@ import type { UserProfile } from "@/lib/api/profile";
 import Card from "@/components/ui/Card";
 import ContactCard from "@/components/sections/ContactCard";
 import Tag from "@/components/ui/Tag";
+import SectionHeading from "@/components/ui/SectionHeading";
+import IconRow from "@/components/ui/IconRow";
 
 interface AboutProps {
   profile: UserProfile;
@@ -16,10 +18,10 @@ export default function About({ profile }: AboutProps) {
 
   return (
     <section id="about" className="scroll-mt-24 px-8 py-24 sm:px-12">
-      <div className="mx-auto flex max-w-4xl flex-col gap-6 sm:flex-row sm:items-stretch">
+      <div className="mx-auto flex max-w-6xl flex-col gap-6 sm:flex-row sm:items-stretch">
         <ContactCard profile={profile} />
 
-        <Card className="p-8 sm:flex-1 sm:p-10">
+        <Card className="p-10 sm:flex-1 sm:p-12">
           <h2 className="font-title text-3xl font-semibold tracking-tight text-foreground">
             About
           </h2>
@@ -37,6 +39,20 @@ export default function About({ profile }: AboutProps) {
               </p>
             ))}
           </div>
+
+          {profile.education.length > 0 && (
+            <div className="mt-6 w-full">
+              <SectionHeading title="Education" />
+              <div className="mt-3 flex w-full flex-col gap-2">
+                {profile.education.map((edu, index) => (
+                  <div key={index} className="flex flex-col gap-2">
+                    <IconRow iconKey={edu.institution_icon_key} label={edu.institution} />
+                    <IconRow iconKey={edu.degree_icon_key} label={edu.degree} />
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </Card>
       </div>
     </section>
