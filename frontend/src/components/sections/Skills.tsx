@@ -30,8 +30,8 @@ export default function Skills({ skills }: SkillsProps) {
   })).filter((group) => group.skills.length > 0);
 
   return (
-    <section id="skills" className="scroll-mt-24 px-8 py-24 sm:px-12">
-      <Card className="mx-auto max-w-4xl p-8 sm:p-10">
+    <section id="skills" className="scroll-mt-24 px-8 py-16 sm:px-12">
+      <Card className="mx-auto max-w-6xl p-10 sm:p-12">
         <h2 className="font-title text-3xl font-semibold tracking-tight text-foreground">Skills</h2>
         <div className="mt-6 space-y-6">
           {categories.map((group, index) => (
@@ -53,6 +53,7 @@ export default function Skills({ skills }: SkillsProps) {
                     color={CATEGORY_COLORS[group.category]}
                     text={skill.name}
                     iconKey={skill.icon_key || undefined}
+                    size="md"
                   />
                 ))}
               </div>

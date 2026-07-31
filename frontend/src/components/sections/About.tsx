@@ -17,7 +17,7 @@ export default function About({ profile }: AboutProps) {
     .filter(Boolean);
 
   return (
-    <section id="about" className="scroll-mt-24 px-8 py-24 sm:px-12">
+    <section id="about" className="scroll-mt-24 px-8 py-16 sm:px-12">
       <div className="mx-auto flex max-w-6xl flex-col gap-6 sm:flex-row sm:items-stretch">
         <ContactCard profile={profile} />
 
