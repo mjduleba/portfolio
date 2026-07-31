@@ -11,6 +11,7 @@ class Command(BaseCommand):
             {
                 'role': 'Software Developer',
                 'company': 'Cohen and Co.',
+                'company_icon_key': 'cohen-and-co',
                 'location': 'Cleveland, OH',
                 'start_date': '2023-01-01',
                 'end_date': None,

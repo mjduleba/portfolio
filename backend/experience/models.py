@@ -5,6 +5,7 @@ from django.contrib.postgres.fields import ArrayField
 class Experience(models.Model):
     role = models.CharField(max_length=100)
     company = models.CharField(max_length=100)
+    company_icon_key = models.SlugField(max_length=50, blank=True, default="")
     location = models.CharField(max_length=100)
     start_date = models.DateField()
     end_date = models.DateField(null=True, blank=True)
