@@ -1,7 +1,16 @@
 from rest_framework import serializers
-from .models import Experience
+from .models import Experience, ExperienceBullet
+
+
+class ExperienceBulletSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ExperienceBullet
+        fields = ["text", "tags"]
+
 
 class ExperienceSerializer(serializers.ModelSerializer):
+    bullets = ExperienceBulletSerializer(many=True, read_only=True)
+
     class Meta:
         model = Experience
-        fields = '__all__'
+        fields = ["id", "role", "company", "location", "start_date", "end_date", "bullets"]

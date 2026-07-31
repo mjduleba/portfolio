@@ -8,10 +8,22 @@ class Experience(models.Model):
     location = models.CharField(max_length=100)
     start_date = models.DateField()
     end_date = models.DateField(null=True, blank=True)
-    bullets = ArrayField(models.CharField(max_length=500), default=list)
-    
+
     class Meta:
         ordering = ['-start_date']
-    
+
     def __str__(self):
         return f"{self.role} at {self.company}"
+
+
+class ExperienceBullet(models.Model):
+    experience = models.ForeignKey(Experience, related_name="bullets", on_delete=models.CASCADE)
+    text = models.CharField(max_length=500)
+    tags = ArrayField(models.CharField(max_length=100), default=list, blank=True)
+    order = models.PositiveSmallIntegerField(default=0)
+
+    class Meta:
+        ordering = ["order", "id"]
+
+    def __str__(self):
+        return self.text[:50]
