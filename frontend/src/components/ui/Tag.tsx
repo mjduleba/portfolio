@@ -21,15 +21,15 @@ interface TagProps {
   text: string;
   iconKey?: string;
   size?: TagSize;
+  href?: string;
 }
 
-export default function Tag({ color, text, iconKey, size = "sm" }: TagProps) {
+export default function Tag({ color, text, iconKey, size = "sm", href }: TagProps) {
   const sizeStyles = SIZE_STYLES[size];
+  const className = `font-mono inline-flex items-center rounded-full font-medium ${sizeStyles.tag} ${TAG_STYLES[color]}`;
 
-  return (
-    <span
-      className={`font-mono inline-flex items-center rounded-full font-medium ${sizeStyles.tag} ${TAG_STYLES[color]}`}
-    >
+  const content = (
+    <>
       {iconKey && (
         <img
           src={`/icons/${iconKey}.png`}
@@ -40,6 +40,21 @@ export default function Tag({ color, text, iconKey, size = "sm" }: TagProps) {
         />
       )}
       {text}
-    </span>
+    </>
   );
+
+  if (href) {
+    return (
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={`${className} transition-opacity duration-200 hover:opacity-80`}
+      >
+        {content}
+      </a>
+    );
+  }
+
+  return <span className={className}>{content}</span>;
 }
