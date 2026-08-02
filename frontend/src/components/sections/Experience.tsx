@@ -2,7 +2,7 @@ import type { Experience as ExperienceEntry } from "@/lib/api/experience";
 import type { Skill } from "@/lib/api/skills";
 import Card from "@/components/ui/Card";
 import Tag from "@/components/ui/Tag";
-import { getSkillColor } from "@/lib/skillColors";
+import TaggedText from "@/components/ui/TaggedText";
 
 interface ExperienceProps {
   experience: ExperienceEntry[];
@@ -15,26 +15,6 @@ function formatDate(dateStr: string) {
     year: "numeric",
     timeZone: "UTC", // dates are date-only strings; force UTC to avoid local-tz day rollover
   });
-}
-
-function renderBulletText(text: string, tags: string[], skills: Skill[]) {
-  if (tags.length === 0) return text;
-
-  const matches = tags
-    .map((tag) => ({ tag, index: text.indexOf(tag) }))
-    .filter((m) => m.index !== -1)
-    .sort((a, b) => a.index - b.index);
-
-  const nodes: React.ReactNode[] = [];
-  let cursor = 0;
-  for (const { tag, index } of matches) {
-    if (index < cursor) continue; // already consumed by an earlier, overlapping match
-    if (index > cursor) nodes.push(text.slice(cursor, index));
-    nodes.push(<Tag key={tag} color={getSkillColor(skills, tag)} text={tag} size="sm" />);
-    cursor = index + tag.length;
-  }
-  if (cursor < text.length) nodes.push(text.slice(cursor));
-  return nodes;
 }
 
 export default function Experience({ experience, skills }: ExperienceProps) {
@@ -75,7 +55,7 @@ export default function Experience({ experience, skills }: ExperienceProps) {
               <ul className="list-disc space-y-2 pl-5">
                 {job.bullets.map((bullet, index) => (
                   <li key={index} className="font-mono text-base leading-7 text-foreground/90">
-                    {renderBulletText(bullet.text, bullet.tags, skills)}
+                    <TaggedText text={bullet.text} tags={bullet.tags} skills={skills} />
                   </li>
                 ))}
               </ul>
