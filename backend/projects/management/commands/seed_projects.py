@@ -24,7 +24,7 @@ class Command(BaseCommand):
                 'bullets': [
                     {
                         'text': 
-                            'Applied a sport-first modular layout separating shared infrastructure  '
+                            'Applied a sport-first modular Python layout separating shared infrastructure  '
                             'from sport-specific logic, making it considerably easier to add new sports', 
                         'tags': ['Python']
                     },
@@ -36,7 +36,7 @@ class Command(BaseCommand):
                     },
                     {
                         'text': 
-                            'Modeled domain data with immutable, slotted dataclasses for request/response objects, '
+                            'Implemented Data Validation by modeling domain data with immutable, slotted dataclasses for request/response objects, '
                             'giving predictable equality, reduced memory overhead, and preventing accidental mutation of snapshot data mid-request',
                         'tags': ['Data Validation']
                     }
