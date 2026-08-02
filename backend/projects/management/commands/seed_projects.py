@@ -24,9 +24,8 @@ class Command(BaseCommand):
                 'bullets': [
                     {
                         'text': 
-                            'Applied a sport-first modular layout (app/sports/mlb/...) '
-                            'separating shared infrastructure (app/discord/, app/commands/, app/shared/) '
-                            'from sport-specific business logic, so a second sport could be added without touching MLB internals', 
+                            'Applied a sport-first modular layout separating shared infrastructure  '
+                            'from sport-specific logic, making it considerably easier to add new sports', 
                         'tags': ['Python']
                     },
                     {
@@ -43,37 +42,37 @@ class Command(BaseCommand):
                     }
                 ],
             },
-            {
-                'title': 'Health Data Pipeline',
-                'description': (
-                    'A cloud-based health analytics platform on AWS that ingests, processes, and analyzes '
-                    'wearable data via the WHOOP API, enabling centralized tracking of health metrics for weekly insights.'
-                ),
-                'tech_stack': ['Python', 'FastAPI', 'PostgreSQL', 'AWS', 'REST API'],
-                'github_url': 'https://github.com/mjduleba/health-analysis-summary',
-                'demo_url': None,
-                'video_url': '',  # TODO: insert real video URL once available
-                'image_url': '',  # TODO: insert real screenshot URL once available
-                'featured': True,
-                'order': 1,
-                'bullets': [
-                    {'text': 
-                        'Designed and built an ELT pipeline ingesting biometric and nutrition data '
-                        'from two third-party data API Integrations into a normalized PostgreSQL '
-                        'warehouse for downstream analytics', 
-                    'tags': ['ETL Pipelines', 'API Integrations', 'PostgreSQL']
-                    },
-                    {'text': 
-                        'Containerized PostgreSQL via Docker Compose with health checks, named volumes '
-                        'for data persistence, and .env-driven configuration for local reproducible development', 
-                    'tags': ['PostgreSQL', 'Docker']
-                    },
-                    {'text': 
-                        'Implemented OAuth 2.0 authorization-code flow for third-party API authentication', 
-                    'tags': ['OAuth']
-                    },
-                ],
-            },
+            # {
+            #     'title': 'Health Data Pipeline',
+            #     'description': (
+            #         'A cloud-based health analytics platform on AWS that ingests, processes, and analyzes '
+            #         'wearable data via the WHOOP API, enabling centralized tracking of health metrics for weekly insights.'
+            #     ),
+            #     'tech_stack': ['Python', 'FastAPI', 'PostgreSQL', 'AWS', 'REST API'],
+            #     'github_url': 'https://github.com/mjduleba/health-analysis-summary',
+            #     'demo_url': None,
+            #     'video_url': '',  # TODO: insert real video URL once available
+            #     'image_url': '',  # TODO: insert real screenshot URL once available
+            #     'featured': True,
+            #     'order': 1,
+            #     'bullets': [
+            #         {'text': 
+            #             'Designed and built an ELT pipeline ingesting biometric and nutrition data '
+            #             'from two third-party data API Integrations into a normalized PostgreSQL '
+            #             'warehouse for downstream analytics', 
+            #         'tags': ['ETL Pipelines', 'API Integrations', 'PostgreSQL']
+            #         },
+            #         {'text': 
+            #             'Containerized PostgreSQL via Docker Compose with health checks, named volumes '
+            #             'for data persistence, and .env-driven configuration for local reproducible development', 
+            #         'tags': ['PostgreSQL', 'Docker']
+            #         },
+            #         {'text': 
+            #             'Implemented OAuth 2.0 authorization-code flow for third-party API authentication', 
+            #         'tags': ['OAuth']
+            #         },
+            #     ],
+            # },
         ]
         for p in projects:
             bullets = p.pop('bullets')
