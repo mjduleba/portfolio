@@ -3,10 +3,10 @@ import Link from "next/link";
 // Navigation links for the header buttons
 const NAV_LINKS = [
   { label: "About", href: "/#about" },
+  { label: "Tools", href: "/#tools" },
   { label: "Skills", href: "/#skills" },
   { label: "Experience", href: "/#experience" },
   { label: "Projects", href: "/#projects" },
-  { label: "Tools", href: "/tools" },
 ];
 
 export default function Header() {
