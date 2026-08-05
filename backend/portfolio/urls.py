@@ -8,4 +8,5 @@ urlpatterns = [
     path('api/', include('experience.urls')),
     path('api/', include('skills.urls')),
     path('api/', include('userprofile.urls')),
+    path('api/', include('tools.urls')),
 ]

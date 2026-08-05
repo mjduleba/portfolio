@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'projects',
     'experience',
     'skills',
-    'userprofile'
+    'userprofile',
+    'tools',
 ]
 
 MIDDLEWARE = [

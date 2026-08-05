@@ -12,6 +12,8 @@ html {
   --accent-green: #16a34a;
   --accent-orange: #ea580c;
   --accent-purple: #9333ea;
+  --accent-sky: #0ea5e9;
+  --accent-pink: #db2777;
 }
 
 @theme inline {
@@ -22,6 +24,8 @@ html {
   --color-accent-green: var(--accent-green);
   --color-accent-orange: var(--accent-orange);
   --color-accent-purple: var(--accent-purple);
+  --color-accent-sky: var(--accent-sky);
+  --color-accent-pink: var(--accent-pink);
   --font-title: var(--font-space-grotesk);
   --font-mono: var(--font-jetbrains-mono);
 }

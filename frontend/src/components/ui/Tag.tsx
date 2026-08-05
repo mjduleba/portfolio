@@ -1,4 +1,4 @@
-export type TagColor = "blue" | "red" | "green" | "orange" | "purple";
+export type TagColor = "blue" | "red" | "green" | "orange" | "purple" | "sky" | "pink";
 export type TagSize = "sm" | "md";
 
 // Text renders in the solid accent color; background is the same color at low
@@ -9,6 +9,8 @@ const TAG_STYLES: Record<TagColor, string> = {
   green: "text-accent-green bg-accent-green/10",
   orange: "text-accent-orange bg-accent-orange/10",
   purple: "text-accent-purple bg-accent-purple/10",
+  sky: "text-accent-sky bg-accent-sky/10",
+  pink: "text-accent-pink bg-accent-pink/10",
 };
 
 const SIZE_STYLES: Record<TagSize, { tag: string; icon: string; iconPx: number }> = {

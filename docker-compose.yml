@@ -27,6 +27,10 @@ services:
       - "3000:3000"
     env_file:
       - .env
+    environment:
+      # Inside the Docker network, the backend is reachable at the service name,
+      # not localhost (which would point back at the frontend container itself).
+      NEXT_PUBLIC_API_URL: http://backend:8000
     depends_on:
       - backend
     volumes:
