@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand
 
-from tools.models import Tool
+from tools.models import Tool, SkillAgentEntry
 
 
 class Command(BaseCommand):
@@ -18,10 +18,19 @@ class Command(BaseCommand):
                     "Each entry walks through the purpose of the skill/subagent, usage examples, "
                     "and how it fits into a real development loop."
                 ),
-                'url': '',  # TODO: insert real repo URL once the showcase repo is created
+                'url': '',
                 'order': 0,
+                'skill_agent_entries': [],
             },
         ]
         for t in tools:
-            Tool.objects.update_or_create(slug=t['slug'], defaults=t)
+            entries = t.pop('skill_agent_entries')
+            tool, _ = Tool.objects.update_or_create(slug=t['slug'], defaults=t)
+            tool.skill_agent_entries.all().delete()
+            for i, e in enumerate(entries):
+                SkillAgentEntry.objects.create(
+                    tool=tool, name=e['name'], kind=e['kind'], description=e['description'],
+                    tags=e.get('tags', []), video_url=e.get('video_url', ''),
+                    image_url=e.get('image_url', ''), order=i,
+                )
         self.stdout.write(self.style.SUCCESS('Tools seeded.'))
