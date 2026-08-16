@@ -1,7 +1,7 @@
 import { apiFetch } from "@/lib/api/client";
 
 // Mirrors backend/tools/models.py's TextChoices — must be kept in sync manually, no codegen.
-export type ToolCategory = "Demo" | "Tool";
+export type ToolCategory = "Demo" | "Tool" | "Guide";
 
 // Content specific to the Skills & Agents Showcase tool. Other future tools may
 // need entirely different content shapes and their own dedicated models — see
@@ -17,6 +17,23 @@ export interface SkillAgentEntry {
   image_url: string;
 }
 
+// Content specific to the LeetCode Pattern Guide tool.
+export interface GuideExampleProblem {
+  title: string;
+  description: string;
+  url: string;
+}
+
+export interface GuidePattern {
+  name: string;
+  how_it_works: string;
+  diagram_svg: string;
+  recognition_signals: string[];
+  code_solution: string;
+  code_language: string;
+  example_problems: GuideExampleProblem[];
+}
+
 export interface Tool {
   id: number;
   title: string;
@@ -27,6 +44,7 @@ export interface Tool {
   order: number;
   created_at: string;
   skill_agent_entries: SkillAgentEntry[];
+  guide_patterns: GuidePattern[];
 }
 
 export async function getTools(): Promise<Tool[]> {
