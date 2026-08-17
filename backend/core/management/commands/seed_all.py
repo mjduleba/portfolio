@@ -11,4 +11,5 @@ class Command(BaseCommand):
         call_command('seed_experience')
         call_command('seed_projects')
         call_command('seed_tools')
+        call_command('seed_guide')
         self.stdout.write(self.style.SUCCESS('All seeding complete.'))

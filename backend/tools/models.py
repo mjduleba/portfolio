@@ -6,6 +6,7 @@ class Tool(models.Model):
     class Category(models.TextChoices):
         DEMO = 'Demo'
         TOOL = 'Tool'
+        GUIDE = 'Guide'
 
     title = models.CharField(max_length=200)
     slug = models.SlugField(max_length=200, unique=True)
@@ -41,3 +42,34 @@ class SkillAgentEntry(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class GuidePattern(models.Model):
+    tool = models.ForeignKey(Tool, related_name="guide_patterns", on_delete=models.CASCADE)
+    name = models.CharField(max_length=200)
+    how_it_works = models.TextField()
+    diagram_svg = models.TextField(blank=True, default="")
+    recognition_signals = ArrayField(models.CharField(max_length=300), default=list, blank=True)
+    code_solution = models.TextField()
+    code_language = models.CharField(max_length=30, default="python")
+    order = models.PositiveSmallIntegerField(default=0)
+
+    class Meta:
+        ordering = ["order", "id"]
+
+    def __str__(self):
+        return self.name
+
+
+class GuideExampleProblem(models.Model):
+    pattern = models.ForeignKey(GuidePattern, related_name="example_problems", on_delete=models.CASCADE)
+    title = models.CharField(max_length=200)
+    description = models.TextField()
+    url = models.URLField(blank=True, default="")
+    order = models.PositiveSmallIntegerField(default=0)
+
+    class Meta:
+        ordering = ["order", "id"]
+
+    def __str__(self):
+        return self.title
