@@ -9,6 +9,11 @@ import { getExperience } from "@/lib/api/experience";
 import { getProjects } from "@/lib/api/projects";
 import { getTools } from "@/lib/api/tools";
 
+// The backend isn't reachable at build time (e.g. inside an isolated Docker
+// build), so this route can't be statically prerendered. Rendering on first
+// request instead; the underlying fetches still cache via `revalidate: 60`.
+export const dynamic = "force-dynamic";
+
 export default async function Home() {
   const [profile, skills, experience, projects, tools] = await Promise.all([
     getProfile(),
