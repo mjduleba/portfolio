@@ -7,6 +7,16 @@ services:
       - .env
     expose:
       - "8000"
+    depends_on:
+      - db
+
+  db:
+    image: postgres:16
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
 
   frontend:
     build:
@@ -32,3 +42,6 @@ services:
     depends_on:
       - backend
       - frontend
+
+volumes:
+  postgres_data:
