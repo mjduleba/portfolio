@@ -1,4 +1,4 @@
-# portfolio
+# Portfolio
 
 My personal portfolio site — a content-driven monorepo pairing a Next.js frontend with a Django REST API backend. All page content (profile, skills, experience, projects, tools) lives in Postgres database and is served through the Django REST API.
 
