@@ -103,6 +103,27 @@ Create a `.env` file at the repo root (used by both `docker-compose.yml` and the
 | `POSTGRES_DB`               | Postgres database name (Docker Compose `db` service)      |
 | `NEXT_PUBLIC_API_URL`      | Base URL the frontend uses to reach the API              |
 
+See `.env.example` for a full template, including the production `SECURE_*` flags.
+
+## Hosting
+
+Deployed on **GCP Compute Engine** — a single `e2-micro` instance running the full stack via `docker-compose.prod.yml`:
+
+```
+Internet → nginx (:80)
+             ├─ /api/, /admin/, /static/  → Django + gunicorn (:8000)
+             └─ everything else           → Next.js standalone server (:3000)
+
+PostgreSQL runs in its own container alongside the app.
+```
+
+- **Backend** — multi-stage Docker image; gunicorn serves the Django app, WhiteNoise serves static/admin assets, `/api/health/` is the deploy healthcheck.
+- **Frontend** — multi-stage Docker image using Next.js `output: "standalone"` for a minimal production runtime; all data fetching happens server-side.
+- **Reverse proxy** — nginx routes API/admin/static traffic to Django and everything else to the Next.js SSR app.
+- **Database** — PostgreSQL, containerized on the same instance.
+
+See the Dockerfiles and `docker-compose.prod.yml` for the full production configuration.
+
 ## Backend
 
 Each Django app follows the same shape: `models.py`, `serializers.py`, `views.py` (DRF `ViewSet`), `urls.py`, `admin.py`, and a `management/commands/seed_*.py` command that seeds its own data.
